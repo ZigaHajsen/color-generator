@@ -12,7 +12,7 @@ import {
 const App: React.FC = () => {
   const [color, setColor] = useState('');
   const [error, setError] = useState(false);
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(new Values('#f15025').all(10));
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -40,7 +40,7 @@ const App: React.FC = () => {
         </form>
       </SectionContainer>
       <SectionColors>
-        {list.map((color, index) => {
+        {list.map((color: any, index: number) => {
           return <SingleColor key={index} index={index} {...color} />;
         })}
       </SectionColors>
