@@ -16,7 +16,13 @@ const App: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('hello');
+    try {
+      let colors = new Values(color).all(10);
+      setList(colors);
+    } catch (error) {
+      setError(true);
+      console.log(error);
+    }
   };
 
   return (
@@ -34,7 +40,9 @@ const App: React.FC = () => {
         </form>
       </SectionContainer>
       <SectionColors>
-        <h4>list goes here</h4>
+        {list.map((color, index) => {
+          return <SingleColor key={index} index={index} {...color} />;
+        })}
       </SectionColors>
     </Fragment>
   );
