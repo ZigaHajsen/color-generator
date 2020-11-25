@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import rgbToHex from '../../utils/rgbToHex';
+import './SingleColorStyles.css';
 
 interface SingleColorProps {
   rgb: number[];
@@ -24,16 +25,16 @@ const SingleColor: React.FC<SingleColorProps> = ({ rgb, weight, index }) => {
 
   return (
     <article
-      className={`color`}
+      className={`color ${index > 10 && 'color-light'}`}
       style={{ backgroundColor: `rgb(${background})` }}
       onClick={() => {
         setAlert(true);
         navigator.clipboard.writeText(hex);
       }}
     >
-      <p>{weight}%</p>
-      <p>{hex}</p>
-      {alert && <p>copied to clipboard</p>}
+      <p className='percent-value'>{weight}%</p>
+      <p className='color-value'>{hex}</p>
+      {alert && <p className='alert'>copied to clipboard</p>}
     </article>
   );
 };
